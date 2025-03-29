@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Human Rights & Governance Hub</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        >
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            /* Material Icons Styling */
+            .material-icons, .material-icons-outlined {
+                vertical-align: middle;
+                margin-right: 6px;
+                font-size: 20px;
+            }
+            
+            nav .material-icons, nav .material-icons-outlined {
+                margin-right: 4px;
+            }
+            
+            nav ul li a.active .material-icons-outlined {
+                display: none;
+            }
+            
+            nav ul li a:not(.active) .material-icons {
+                display: none;
+            }
+        </style>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1><span class="material-icons">balance</span> Human Rights & Governance Hub</h1>
+        </header>
+
+        <div class="main-container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html" class="active">
+                            <span class="material-icons">home</span>
+                            <span class="material-icons-outlined">home</span>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="resources.html">
+                            <span class="material-icons">library_books</span>
+                            <span class="material-icons-outlined">library_books</span>
+                            Resources
+                        </a>
+                    </li>
+                    <li>
+                        <a href="forums.html">
+                            <span class="material-icons">forum</span>
+                            <span class="material-icons-outlined">forum</span>
+                            Forums
+                        </a>
+                    </li>
+                    <li>
+                        <a href="report.html">
+                            <span class="material-icons">report_problem</span>
+                            <span class="material-icons-outlined">report_problem</span>
+                            Report Injustice
+                        </a>
+                    </li>
+                    <li>
+                        <a href="initiatives.html">
+                            <span class="material-icons">emoji_events</span>
+                            <span class="material-icons-outlined">emoji_events</span>
+                            Initiatives
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="main-content">
+                <section id="home" class="section">
+                    <h2><span class="material-icons">home</span> Welcome to the Hub</h2>
+                    <p>
+                        <span class="material-icons-outlined">info</span>
+                        This platform is dedicated to promoting human rights,
+                        educating on governance, and fostering civic participation.
+                        Explore resources, engage in discussions, and contribute to
+                        positive change in our communities.
+                    </p>
+                    <p>
+                        <span class="material-icons-outlined">navigation</span>
+                        Use the navigation on the left to explore different sections
+                        of the Hub.
+                    </p>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p><span class="material-icons">copyright</span> 2025 Human Rights & Governance Hub. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

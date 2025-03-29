@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Report Injustice - Human Rights & Governance Hub</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        >
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            /* Material Icons Styling */
+            .material-icons, .material-icons-outlined {
+                vertical-align: middle;
+                margin-right: 6px;
+                font-size: 20px;
+            }
+            
+            nav .material-icons, nav .material-icons-outlined {
+                margin-right: 4px;
+            }
+            
+            nav ul li a.active .material-icons-outlined {
+                display: none;
+            }
+            
+            nav ul li a:not(.active) .material-icons {
+                display: none;
+            }
+            
+            .form-group label .material-icons-outlined {
+                font-size: 18px;
+                color: #555;
+            }
+            
+            button .material-icons {
+                font-size: 18px;
+                color: white;
+            }
+        </style>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1><span class="material-icons">balance</span> Human Rights & Governance Hub</h1>
+        </header>
+
+        <div class="main-container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <span class="material-icons">home</span>
+                            <span class="material-icons-outlined">home</span>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="resources.html">
+                            <span class="material-icons">library_books</span>
+                            <span class="material-icons-outlined">library_books</span>
+                            Resources
+                        </a>
+                    </li>
+                    <li>
+                        <a href="forums.html">
+                            <span class="material-icons">forum</span>
+                            <span class="material-icons-outlined">forum</span>
+                            Forums
+                        </a>
+                    </li>
+                    <li>
+                        <a href="report.html" class="active">
+                            <span class="material-icons">report_problem</span>
+                            <span class="material-icons-outlined">report_problem</span>
+                            Report Injustice
+                        </a>
+                    </li>
+                    <li>
+                        <a href="initiatives.html">
+                            <span class="material-icons">emoji_events</span>
+                            <span class="material-icons-outlined">emoji_events</span>
+                            Initiatives
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="main-content">
+                <section id="report" class="section">
+                    <h2><span class="material-icons">report_problem</span> Report Injustice</h2>
+
+                    <div class="report-form">
+                        <h3><span class="material-icons-outlined">security</span> Report an Incident Securely</h3>
+                        <p>
+                            <span class="material-icons-outlined">privacy_tip</span>
+                            If you witness or experience a human rights violation or
+                            significant governance issue, please use this form to
+                            report it. Your information can be submitted
+                            anonymously.
+                        </p>
+                        <form>
+                            <div class="form-group">
+                                <label for="name"><span class="material-icons-outlined">person_outline</span> Your Name (Optional)</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Enter your name (optional)"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><span class="material-icons-outlined">email</span> Your Email (Optional)</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Enter your email (optional, for follow-up)"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="incident_date"><span class="material-icons-outlined">event</span> Date of Incident</label>
+                                <input
+                                    type="date"
+                                    id="incident_date"
+                                    name="incident_date"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="location"><span class="material-icons-outlined">location_on</span> Location of Incident</label>
+                                <input
+                                    type="text"
+                                    id="location"
+                                    name="location"
+                                    placeholder="City, Region, or specific address if safe"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="description"><span class="material-icons-outlined">description</span> Description of Incident</label>
+                                <textarea
+                                    id="description"
+                                    name="description"
+                                    rows="5"
+                                    placeholder="Provide a detailed account of the incident..."
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn">
+                                <span class="material-icons">send</span> Submit Secure Report
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p><span class="material-icons">copyright</span> 2025 Human Rights & Governance Hub. All rights reserved.</p>
+        </footer>
+    </body>
+</html>
