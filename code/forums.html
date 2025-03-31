@@ -328,6 +328,11 @@
                     let userLocation = 'Unknown';
                     let ws = null;
                     let activeRoomId = null;
+                    // Store messages for each chat room
+                    const chatMessages = {
+                        '1': [],
+                        '2': []
+                    };
                     
                     // Generate a unique user ID on page load
                     function generateUserId() {
@@ -376,13 +381,18 @@
                                 return;
                             }
                             
-                            // Only process messages for the active room
-                            if (message.roomId === activeRoomId) {
-                                displayMessage(message.roomId, message);
+                            // Store the message in the appropriate chat room's history
+                            if (message.roomId && chatMessages[message.roomId]) {
+                                chatMessages[message.roomId].push(message);
                                 
-                                // Scroll to bottom
-                                const messagesContainer = document.getElementById(`chat-messages-${message.roomId}`);
-                                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                                // If this is the active room, display the message
+                                if (message.roomId === activeRoomId) {
+                                    displayMessage(message.roomId, message);
+                                    
+                                    // Scroll to bottom
+                                    const messagesContainer = document.getElementById(`chat-messages-${message.roomId}`);
+                                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                                }
                             }
                         };
                         
@@ -423,8 +433,29 @@
                                     document.getElementById(`chat-status-${roomId}`).style.display = "none";
                                 }, 2000);
                             }
+                            
+                            // Clear and reload message history for this room
+                            const messagesContainer = document.getElementById(`chat-messages-${roomId}`);
+                            messagesContainer.innerHTML = '';
+                            
+                            // Display all stored messages for this room
+                            chatMessages[roomId].forEach(msg => {
+                                displayMessage(roomId, msg);
+                            });
+                            
+                            // Scroll to the bottom of the chat
+                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
                         } else {
                             chatElement.style.display = "none";
+                            
+                            // Leave the chat room but keep message history
+                            if (ws && ws.readyState === WebSocket.OPEN) {
+                                ws.send(JSON.stringify({
+                                    type: "leave",
+                                    roomId: roomId
+                                }));
+                            }
+                            
                             activeRoomId = null;
                         }
                     }
@@ -460,14 +491,17 @@
                         const message = inputElement.value.trim();
                         
                         if (message && ws && ws.readyState === WebSocket.OPEN) {
-                            // Create and send message
-                            ws.send(JSON.stringify({
+                            const chatMessage = {
                                 type: "message",
                                 roomId: roomId,
                                 text: message,
                                 userId: userId,
-                                location: userLocation
-                            }));
+                                location: userLocation,
+                                timestamp: Date.now()
+                            };
+                            
+                            // Send message to server
+                            ws.send(JSON.stringify(chatMessage));
                             
                             // Clear input
                             inputElement.value = '';

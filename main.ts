@@ -69,6 +69,15 @@ Deno.serve({
             }));
           }
           
+          // Handle explicit leave room
+          if (data.type === "leave" && userRoomId) {
+            if (chatRooms.has(userRoomId)) {
+              chatRooms.get(userRoomId)?.delete(socket);
+              console.log(`User left room ${userRoomId}`);
+            }
+            userRoomId = null;
+          }
+          
           // Handle chat messages
           if (data.type === "message" && userRoomId) {
             const message: ChatMessage = {
