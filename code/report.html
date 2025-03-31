@@ -9,9 +9,15 @@
             rel="stylesheet"
         >
         <!-- Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        >
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+            rel="stylesheet"
+        >
+        <link rel="stylesheet" href="/code/style.css">
         <style>
             /* Material Icons Styling */
             .material-icons, .material-icons-outlined {
@@ -19,71 +25,77 @@
                 margin-right: 6px;
                 font-size: 20px;
             }
-            
+
             nav .material-icons, nav .material-icons-outlined {
                 margin-right: 4px;
             }
-            
+
             nav ul li a.active .material-icons-outlined {
                 display: none;
             }
-            
+
             nav ul li a:not(.active) .material-icons {
                 display: none;
             }
-            
+
             .form-group label .material-icons-outlined {
                 font-size: 18px;
                 color: #555;
             }
-            
+
             button .material-icons {
                 font-size: 18px;
                 color: white;
             }
         </style>
-        <script src="script.js"></script>
+        <script src="/code/script.js"></script>
     </head>
     <body>
         <header>
-            <h1><span class="material-icons">balance</span> Human Rights & Governance Hub</h1>
+            <h1>
+                <span class="material-icons">balance</span> Human Rights &
+                Governance Hub
+            </h1>
         </header>
 
         <div class="main-container">
             <nav>
                 <ul>
                     <li>
-                        <a href="index.html">
+                        <a href="/code/index.html">
                             <span class="material-icons">home</span>
                             <span class="material-icons-outlined">home</span>
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="resources.html">
+                        <a href="/code/resources.html">
                             <span class="material-icons">library_books</span>
-                            <span class="material-icons-outlined">library_books</span>
+                            <span class="material-icons-outlined"
+                            >library_books</span>
                             Resources
                         </a>
                     </li>
                     <li>
-                        <a href="forums.html">
+                        <a href="/code/forums.html">
                             <span class="material-icons">forum</span>
                             <span class="material-icons-outlined">forum</span>
                             Forums
                         </a>
                     </li>
                     <li>
-                        <a href="report.html" class="active">
+                        <a href="/code/report.html" class="active">
                             <span class="material-icons">report_problem</span>
-                            <span class="material-icons-outlined">report_problem</span>
+                            <span class="material-icons-outlined"
+                            >report_problem</span>
                             Report Injustice
                         </a>
                     </li>
                     <li>
-                        <a href="initiatives.html">
+                        <a href="/code/initiatives.html">
                             <span class="material-icons">emoji_events</span>
-                            <span class="material-icons-outlined">emoji_events</span>
+                            <span class="material-icons-outlined"
+                            >emoji_events</span>
                             Initiatives
                         </a>
                     </li>
@@ -92,20 +104,30 @@
 
             <main class="main-content">
                 <section id="report" class="section">
-                    <h2><span class="material-icons">report_problem</span> Report Injustice</h2>
+                    <h2>
+                        <span class="material-icons">report_problem</span>
+                        Report Injustice
+                    </h2>
 
                     <div class="report-form">
-                        <h3><span class="material-icons-outlined">security</span> Report an Incident Securely</h3>
+                        <h3>
+                            <span class="material-icons-outlined"
+                            >security</span> Report an Incident Securely
+                        </h3>
                         <p>
-                            <span class="material-icons-outlined">privacy_tip</span>
-                            If you witness or experience a human rights violation or
-                            significant governance issue, please use this form to
-                            report it. Your information can be submitted
-                            anonymously.
+                            <span class="material-icons-outlined"
+                            >privacy_tip</span>
+                            If you witness or experience a human rights
+                            violation or significant governance issue, please
+                            use this form to report it. Your information can be
+                            submitted anonymously.
                         </p>
                         <form>
                             <div class="form-group">
-                                <label for="name"><span class="material-icons-outlined">person_outline</span> Your Name (Optional)</label>
+                                <label for="name"><span
+                                        class="material-icons-outlined"
+                                    >person_outline</span> Your Name
+                                    (Optional)</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -114,7 +136,9 @@
                                 >
                             </div>
                             <div class="form-group">
-                                <label for="email"><span class="material-icons-outlined">email</span> Your Email (Optional)</label>
+                                <label for="email"><span
+                                        class="material-icons-outlined"
+                                    >email</span> Your Email (Optional)</label>
                                 <input
                                     type="email"
                                     id="email"
@@ -123,7 +147,9 @@
                                 >
                             </div>
                             <div class="form-group">
-                                <label for="incident_date"><span class="material-icons-outlined">event</span> Date of Incident</label>
+                                <label for="incident_date"><span
+                                        class="material-icons-outlined"
+                                    >event</span> Date of Incident</label>
                                 <input
                                     type="date"
                                     id="incident_date"
@@ -132,7 +158,10 @@
                                 >
                             </div>
                             <div class="form-group">
-                                <label for="location"><span class="material-icons-outlined">location_on</span> Location of Incident</label>
+                                <label for="location"><span
+                                        class="material-icons-outlined"
+                                    >location_on</span> Location of
+                                    Incident</label>
                                 <input
                                     type="text"
                                     id="location"
@@ -142,7 +171,10 @@
                                 >
                             </div>
                             <div class="form-group">
-                                <label for="description"><span class="material-icons-outlined">description</span> Description of Incident</label>
+                                <label for="description"><span
+                                        class="material-icons-outlined"
+                                    >description</span> Description of
+                                    Incident</label>
                                 <textarea
                                     id="description"
                                     name="description"
@@ -153,7 +185,8 @@
                             </div>
 
                             <button type="submit" class="btn">
-                                <span class="material-icons">send</span> Submit Secure Report
+                                <span class="material-icons">send</span> Submit
+                                Secure Report
                             </button>
                         </form>
                     </div>
@@ -162,7 +195,10 @@
         </div>
 
         <footer>
-            <p><span class="material-icons">copyright</span> 2025 Human Rights & Governance Hub. All rights reserved.</p>
+            <p>
+                <span class="material-icons">copyright</span> 2025 Human Rights
+                & Governance Hub. All rights reserved.
+            </p>
         </footer>
     </body>
 </html>

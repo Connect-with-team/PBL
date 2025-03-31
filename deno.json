@@ -1,0 +1,9 @@
+{
+    "name": "@college/pbl",
+    "version": "0.1.0",
+    "description": "A project for college PBL",
+    "imports": {},
+    "tasks": {
+        "start": "deno run -A--watch main.ts"
+    }
+}
