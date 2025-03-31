@@ -1,0 +1,63 @@
+/* Styles specific to the Interactive Forums page */
+
+.forum-intro {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background-color: #eef6ff; /* Light blue background */
+    border: 1px solid #cce0ff;
+    border-radius: var(--border-radius);
+}
+
+.forum-category {
+    /* Using the global .card style */
+    margin-bottom: var(--spacing-lg);
+}
+
+.forum-category h3 {
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.forum-topic-list {
+    list-style: none;
+    padding: 0;
+}
+
+.forum-topic-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.forum-topic-item:last-child {
+    border-bottom: none;
+}
+
+.forum-topic-title a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-weight: bold;
+}
+
+.forum-topic-title a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+.forum-topic-meta {
+    font-size: 0.9em;
+    color: #6c757d;
+    text-align: right;
+}
+
+.forum-actions {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+/* Style for a simulated 'New Topic' button */
+.new-topic-button {
+    /* Uses global .button styles */
+}

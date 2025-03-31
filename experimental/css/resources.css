@@ -1,0 +1,45 @@
+/* Styles specific to the Educational Resources page */
+
+.resource-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.resource-section h3 {
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.resource-list {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+}
+
+.resource-list li {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--accent-color); /* Highlight border */
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-radius: var(--border-radius);
+    transition: box-shadow 0.3s ease;
+}
+
+.resource-list li:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.resource-list a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-weight: bold;
+}
+
+.resource-list a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+.resource-description {
+    margin-top: var(--spacing-sm);
+    color: #555; /* Slightly lighter text for description */
+}

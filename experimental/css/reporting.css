@@ -1,0 +1,42 @@
+/* Styles specific to the Reporting Tools page */
+
+.tool-section {
+    /* Using the global .card style */
+    margin-bottom: var(--spacing-xl);
+    text-align: center; /* Center content within the card */
+}
+
+.tool-section h3 {
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.tool-description {
+    margin-bottom: var(--spacing-lg);
+    color: #555;
+}
+
+.tool-button {
+     /* Uses global .button styles */
+    margin-top: var(--spacing-sm);
+}
+
+/* Placeholder for a simple tracking list/table */
+.tracking-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-lg);
+    text-align: left; /* Align list text left */
+}
+
+.tracking-item {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+.tracking-item:last-child {
+    border-bottom: none;
+}
+
+.tracking-item strong {
+    color: var(--primary-color);
+}

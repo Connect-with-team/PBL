@@ -1,0 +1,35 @@
+/* Styles specific to the Case Studies page */
+
+.case-study {
+    /* Using the global .card style by adding the class in HTML */
+    margin-bottom: var(--spacing-xl); /* Increased spacing between studies */
+}
+
+.case-study h3 {
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.case-study-meta {
+    font-size: 0.9em;
+    color: #6c757d; /* Muted color for metadata */
+    margin-bottom: var(--spacing-md);
+}
+
+.case-study-tags span {
+    display: inline-block;
+    background-color: #e9ecef; /* Light grey background for tags */
+    color: #495057;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin-right: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: 0.85em;
+}
+
+.case-study img { /* Basic image styling if you add images */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: var(--spacing-md);
+    border-radius: var(--border-radius);
+}
