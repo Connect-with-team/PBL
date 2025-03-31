@@ -5,5 +5,11 @@
     "imports": {},
     "tasks": {
         "start": "deno run -A--watch main.ts"
+    },
+    "fmt": {
+        "indentWidth": 4,
+        "semiColons": true,
+        "singleQuote": false,
+        "lineWidth": 80
     }
 }
