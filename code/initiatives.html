@@ -38,16 +38,70 @@
                 display: none;
             }
 
-            #initiative-list li {
-                margin-bottom: 10px;
-                display: flex;
-                align-items: flex-start;
+            /* Initiative Cards Grid */
+            .initiatives-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                margin-top: 20px;
             }
 
-            #initiative-list li .material-icons-outlined {
+            .initiative-card {
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .initiative-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-img-placeholder {
+                background-color: #e0e0e0;
+                height: 150px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .card-content {
+                padding: 16px;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .card-title {
+                font-weight: 600;
+                color: #2a4b8d;
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+            }
+
+            .card-title .material-icons-outlined {
                 color: #2a4b8d;
                 margin-right: 8px;
-                font-size: 18px;
+            }
+
+            @media (max-width: 900px) {
+                .initiatives-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (max-width: 600px) {
+                .initiatives-grid {
+                    grid-template-columns: 1fr;
+                }
             }
         </style>
         <script src="/code/script.js"></script>
@@ -116,39 +170,122 @@
                             >account_balance</span> Government & Civic
                             Initiatives
                         </h3>
-                        <ul id="initiative-list">
-                            <li>
-                                <span class="material-icons-outlined"
-                                >policy</span>
-                                National Action Plan for Human Rights Promotion
-                                and Protection.
-                            </li>
-                            <li>
-                                <span class="material-icons-outlined"
-                                >public</span>
-                                Open Government Partnership commitments
-                                enhancing transparency.
-                            </li>
-                            <li>
-                                <span class="material-icons-outlined"
-                                >how_to_vote</span>
-                                Programs aimed at strengthening electoral
-                                integrity and citizen participation.
-                            </li>
-                            <li>
-                                <span class="material-icons-outlined"
-                                >gavel</span>
-                                Legislative reforms focusing on the protection
-                                of vulnerable populations.
-                            </li>
-                            <li>
-                                <span class="material-icons-outlined"
-                                >devices</span>
-                                Digital governance initiatives for improved
-                                public service delivery.
-                            </li>
-                        </ul>
-                        <p>
+                        
+                        <div class="initiatives-grid">
+                            <!-- Card 1 -->
+                            <a href="https://www.humanrights.gov/national-action-plan" class="initiative-card">
+                                <div class="card-img-placeholder">
+                                    <span class="material-icons">image</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <span class="material-icons-outlined">policy</span>
+                                        National Action Plan
+                                    </h4>
+                                    <p>National Action Plan for Human Rights Promotion and Protection</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Card 2 -->
+                            <a href="https://www.opengovpartnership.org" class="initiative-card">
+                                <div class="card-img-placeholder">
+                                    <span class="material-icons">image</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <span class="material-icons-outlined">public</span>
+                                        Open Government Partnership
+                                    </h4>
+                                    <p>Commitments enhancing transparency and accountability</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Card 3 -->
+                            <a href="https://www.electoralcommission.org/integrity" class="initiative-card">
+                                <div class="card-img-placeholder">
+                                    <span class="material-icons">image</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <span class="material-icons-outlined">how_to_vote</span>
+                                        Electoral Integrity
+                                    </h4>
+                                    <p>Programs aimed at strengthening electoral integrity and citizen participation</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Card 4 -->
+                            <a href="https://www.legislature.gov/reforms" class="initiative-card">
+                                <div class="card-img-placeholder">
+                                    <span class="material-icons">image</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <span class="material-icons-outlined">gavel</span>
+                                        Legislative Reforms
+                                    </h4>
+                                    <p>Reforms focusing on the protection of vulnerable populations</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Card 5 -->
+                            <a href="https://www.digitalgovernment.org" class="initiative-card">
+                                <div class="card-img-placeholder">
+                                    <span class="material-icons">image</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <span class="material-icons-outlined">devices</span>
+                                        Digital Governance
+                                    </h4>
+                                    <p>Digital governance initiatives for improved public service delivery</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Card 6 -->
+                            <a href="https://www.accesstojustice.org" class="initiative-card">
+                                <div class="card-img-placeholder">
+                                    <span class="material-icons">image</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <span class="material-icons-outlined">accessibility</span>
+                                        Access to Justice
+                                    </h4>
+                                    <p>Programs increasing access to legal remedies for marginalized communities</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Card 7 -->
+                            <a href="https://www.civicengagement.org" class="initiative-card">
+                                <div class="card-img-placeholder">
+                                    <span class="material-icons">image</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <span class="material-icons-outlined">groups</span>
+                                        Civic Engagement
+                                    </h4>
+                                    <p>Initiatives to promote active citizenship and community involvement</p>
+                                </div>
+                            </a>
+                            
+                            <!-- Card 8 -->
+                            <a href="https://www.transparencyinitiative.org" class="initiative-card">
+                                <div class="card-img-placeholder">
+                                    <span class="material-icons">image</span>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <span class="material-icons-outlined">visibility</span>
+                                        Transparency Initiative
+                                    </h4>
+                                    <p>Programs to enhance government transparency and combat corruption</p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <p style="margin-top: 20px;">
                             <span class="material-icons-outlined">info</span>
                             For detailed official information, please refer to
                             relevant government ministry websites or official
