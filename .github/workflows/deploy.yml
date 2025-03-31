@@ -6,9 +6,10 @@ on:
       - "code/**"
       - "main.ts"
       - "deno.json"
+      - ".github/workflows/deploy.yml"
 
 jobs:
-  deploy-agents-showcase:
+  deploy-pbl-work:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -29,4 +30,4 @@ jobs:
           echo "Deploying..."
           deployctl deploy --project=PBL --prod ./main.ts
         env:
-          DENO_DEPLOY_TOKEN: ${{ secrets.PBL_ACCESS_TOKEN }}
+          DENO_DEPLOY_TOKEN: ${{ secrets.PBL }}
