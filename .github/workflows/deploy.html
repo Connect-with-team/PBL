@@ -24,9 +24,9 @@ jobs:
             - name: Install deployctl
                 run: deno install -gArf jsr:@deno/deployctl
 
-            - name: Deploy Agents-Showcase
+            - name: Deploy PBL
                 run: |
                         echo "Deploying..."
-                        deployctl deploy --project=agents-showcase --prod ./main.ts
+                        deployctl deploy --project=PBL --prod ./main.ts
                 env:
                     DENO_DEPLOY_TOKEN: ${{ secrets.PBL_ACCESS_TOKEN }}
