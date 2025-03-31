@@ -1,0 +1,32 @@
+name: Deno Deploy
+
+on:
+    push:
+        paths:
+            - 'code/**'
+            - 'main.ts'
+            - 'deno.json'
+
+jobs:
+    deploy-agents-showcase:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+                uses: actions/checkout@v2
+                with:
+                    fetch-depth: 0
+
+            - name: Setup Deno
+                uses: denoland/setup-deno@v2
+                with:
+                    deno-version: v2.x
+
+            - name: Install deployctl
+                run: deno install -gArf jsr:@deno/deployctl
+
+            - name: Deploy Agents-Showcase
+                run: |
+                        echo "Deploying..."
+                        deployctl deploy --project=agents-showcase --prod ./main.ts
+                env:
+                    DENO_DEPLOY_TOKEN: ${{ secrets.PBL_ACCESS_TOKEN }}
