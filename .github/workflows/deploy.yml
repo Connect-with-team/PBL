@@ -29,6 +29,6 @@ jobs:
         run: |
           echo "Deploying..."
           echo "Deno Deploy Token: ${{ secrets.PBL }}"
-          deployctl deploy --project=PBL-Work --prod --token=ddo_gXWMGGxAPcS4t9HTVA454zT04uPkHF1koMsr ./main.ts
+          deployctl deploy --project=pbl-Work --prod --token=ddo_gXWMGGxAPcS4t9HTVA454zT04uPkHF1koMsr ./main.ts
         env:
           DENO_DEPLOY_TOKEN: ${{ secrets.PBL }}
