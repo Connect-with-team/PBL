@@ -98,6 +98,23 @@ nav ul li a.active {
     border-left-color: #ffffff;
 }
 
+/* Add these styles for icon handling in navigation */
+nav ul li a .material-icons {
+    display: none;
+}
+
+nav ul li a .material-icons-outlined {
+    display: inline-block;
+}
+
+nav ul li a.active .material-icons {
+    display: inline-block;
+}
+
+nav ul li a.active .material-icons-outlined {
+    display: none;
+}
+
 .main-content {
     margin-left: 250px;
     padding: 40px;

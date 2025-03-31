@@ -1,20 +1,21 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Get current page filename
-    const currentPage = window.location.pathname.split('/').pop();
+document.addEventListener('DOMContentLoaded', function() {
+    // Get current page path
+    const currentPage = window.location.pathname;
     
-    // Set active class based on current page
-    const navLinks = document.querySelectorAll("nav ul li a");
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('nav ul li a');
+    
+    // Loop through links to find the matching one
     navLinks.forEach(link => {
-        // Get href attribute
-        const href = link.getAttribute("href");
+        // Extract the link's path
+        const linkPath = link.getAttribute('href');
         
-        // If this is the current page or we're on index.html and the link is to home
-        if (href === currentPage || 
-            (currentPage === "" && href === "index.html") || 
-            (currentPage === "/" && href === "index.html")) {
-            link.classList.add("active");
+        // Compare with current page and set active class
+        if (currentPage === linkPath || 
+            (linkPath.includes('/index.html') && (currentPage === '/' || currentPage.endsWith('/code/')))) {
+            link.classList.add('active');
         } else {
-            link.classList.remove("active");
+            link.classList.remove('active');
         }
     });
     
