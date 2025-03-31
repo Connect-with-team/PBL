@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login - Human Rights & Governance Hub</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        >
+        <!-- Material Icons -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        >
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+            rel="stylesheet"
+        >
+        <link rel="stylesheet" href="/code/style.css">
+        <style>
+            /* Login page specific styles */
+            .auth-container {
+                max-width: 450px;
+                margin: 0 auto;
+                padding: 30px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .auth-container h2 {
+                color: #2a4b8d;
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 1.8rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .form-switch {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 0.9rem;
+            }
+
+            .form-switch a {
+                color: #2a4b8d;
+                text-decoration: none;
+                font-weight: 600;
+                margin-left: 5px;
+            }
+
+            .form-switch a:hover {
+                text-decoration: underline;
+            }
+
+            #forgotPassword {
+                text-align: right;
+                display: block;
+                margin-top: 10px;
+                font-size: 0.9rem;
+                color: #666;
+                text-decoration: none;
+            }
+
+            #forgotPassword:hover {
+                color: #2a4b8d;
+                text-decoration: underline;
+            }
+
+            .auth-tabs {
+                display: flex;
+                margin-bottom: 20px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .auth-tab {
+                flex: 1;
+                padding: 10px;
+                text-align: center;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+
+            .auth-tab.active {
+                color: #2a4b8d;
+                border-bottom: 3px solid #2a4b8d;
+            }
+
+            #registerForm {
+                display: none;
+            }
+
+            .auth-message {
+                margin-top: 15px;
+                padding: 10px;
+                border-radius: 5px;
+                text-align: center;
+                font-size: 0.9rem;
+                display: none;
+            }
+
+            .auth-message.error {
+                background-color: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+            }
+
+            .auth-message.success {
+                background-color: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+        </style>
+        <script src="/code/script.js"></script>
+    </head>
+    <body>
+        <header>
+            <h2>
+                <span class="material-icons">balance</span> Human Rights &
+                Governance Hub
+            </h2>
+            <div id="auth-buttons">
+                <!-- Auth buttons will be inserted by JavaScript -->
+                <a href="/code/login.html" class="auth-btn">
+                    <span class="material-icons-outlined">login</span> Login
+                </a>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/code/index.html">
+                            <span class="material-icons">home</span>
+                            <span class="material-icons-outlined">home</span>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/code/resources.html">
+                            <span class="material-icons">library_books</span>
+                            <span class="material-icons-outlined">library_books</span>
+                            Resources
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/code/forums.html">
+                            <span class="material-icons">forum</span>
+                            <span class="material-icons-outlined">forum</span>
+                            Forums
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/code/report.html">
+                            <span class="material-icons">report_problem</span>
+                            <span class="material-icons-outlined">report_problem</span>
+                            Report Injustice
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/code/initiatives.html">
+                            <span class="material-icons">emoji_events</span>
+                            <span class="material-icons-outlined">emoji_events</span>
+                            Initiatives
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="main-content">
+                <section class="section">
+                    <div class="auth-container">
+                        <div class="auth-tabs">
+                            <div class="auth-tab active" id="loginTab">Login</div>
+                            <div class="auth-tab" id="registerTab">Register</div>
+                        </div>
+                        
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="email">
+                                    <span class="material-icons-outlined">email</span> Email
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required
+                                    placeholder="Enter your email"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">
+                                    <span class="material-icons-outlined">lock</span> Password
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    required
+                                    placeholder="Enter your password"
+                                >
+                                <a href="#" id="forgotPassword">Forgot password?</a>
+                            </div>
+                            
+                            <button type="submit" id="loginButton">
+                                <span class="material-icons">login</span> Login
+                            </button>
+                            
+                            <div id="loginMessage" class="auth-message"></div>
+                        </form>
+                        
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label for="regName">
+                                    <span class="material-icons-outlined">person</span> Full Name
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="regName" 
+                                    name="name" 
+                                    required
+                                    placeholder="Enter your full name"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="regEmail">
+                                    <span class="material-icons-outlined">email</span> Email
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="regEmail" 
+                                    name="email" 
+                                    required
+                                    placeholder="Enter your email"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="regPassword">
+                                    <span class="material-icons-outlined">lock</span> Password
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="regPassword" 
+                                    name="password" 
+                                    required
+                                    placeholder="Create a password"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">
+                                    <span class="material-icons-outlined">lock</span> Confirm Password
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="confirmPassword" 
+                                    name="confirmPassword" 
+                                    required
+                                    placeholder="Confirm your password"
+                                >
+                            </div>
+                            
+                            <button type="submit" id="registerButton">
+                                <span class="material-icons">person_add</span> Register
+                            </button>
+                            
+                            <div id="registerMessage" class="auth-message"></div>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <p>
+                <span class="material-icons">copyright</span> 2025 Human Rights
+                & Governance Hub. All rights reserved.
+            </p>
+        </footer>
+    </body>
+</html>
