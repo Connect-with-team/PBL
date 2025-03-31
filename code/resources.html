@@ -128,8 +128,7 @@
             /* Resource Cards */
             .resource-cards {
                 display: grid;
-                grid-template-columns:
-                    repeat(auto-fill, minmax(300px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 20px;
                 margin-top: 20px;
                 margin-bottom: 30px;
@@ -140,6 +139,9 @@
                 overflow: hidden;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
             }
 
             .resource-card:hover {
@@ -165,12 +167,17 @@
                 padding: 0 15px 15px;
                 color: #666;
                 font-size: 14px;
+                flex-grow: 1;
+            }
+
+            .resource-card .btn-container {
+                padding: 0 15px 15px;
+                margin-top: auto;
             }
 
             .btn {
                 display: inline-flex;
                 align-items: center;
-                margin: 0 15px 15px;
                 padding: 8px 15px;
                 background-color: #2a4b8d;
                 color: white;
@@ -243,12 +250,6 @@
                 color: #666;
                 margin-bottom: 20px;
                 line-height: 1.6;
-            }
-
-            /* Navigation Icons */
-            nav ul li a {
-                display: flex;
-                align-items: center;
             }
 
             /* Responsive Adjustments */
@@ -354,7 +355,7 @@
                         <div class="tab-content">
                             <!-- Blogs Tab -->
                             <div class="tab-pane active" id="blogs">
-                                <!-- Fundamentals Group -->
+                                <!-- Row 1: Human Rights Fundamentals -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
@@ -365,7 +366,7 @@
                                         concepts and principles of human rights
                                         and good governance.
                                     </p>
-                                    <div class="resource-cards"></div>
+                                    <div class="resource-cards">
                                         <div class="resource-card">
                                             <img
                                                 src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -383,9 +384,11 @@
                                                 context, and key international
                                                 declarations like the UDHR.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
@@ -404,9 +407,11 @@
                                                 transparency, accountability,
                                                 rule of law, and participation.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
@@ -425,14 +430,16 @@
                                                 at national and international
                                                 levels.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Case Studies Group -->
+                                <!-- Row 2: Case Studies & Success Stories -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
@@ -444,7 +451,7 @@
                                         human rights challenges, interventions,
                                         and outcomes.
                                     </p>
-                                    <div class="resource-cards"></div>
+                                    <div class="resource-cards">
                                         <div class="resource-card">
                                             <img
                                                 src="https://images.unsplash.com/photo-1591291621164-2c6367723315?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -462,9 +469,11 @@
                                                 human rights challenges and
                                                 successful advocacy efforts.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
@@ -483,9 +492,11 @@
                                                 successfully championed human
                                                 rights issues.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
@@ -504,14 +515,16 @@
                                                 principles and addressing
                                                 governance challenges.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Academic Resources Group -->
+                                <!-- Row 3: Academic Resources -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
@@ -540,9 +553,11 @@
                                                 implementation and governance
                                                 effectiveness.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
@@ -560,9 +575,11 @@
                                                 on different communities and
                                                 sectors.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
@@ -581,9 +598,11 @@
                                                 human rights and governance
                                                 models.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >read_more</span> Read More</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -591,7 +610,7 @@
 
                             <!-- Videos Tab -->
                             <div class="tab-pane" id="videos">
-                                <!-- Educational Series Group -->
+                                <!-- Row 1: Educational Series -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
@@ -605,7 +624,7 @@
                                     <div class="resource-cards">
                                         <div class="resource-card">
                                             <img
-                                                src="img/video1.jpg"
+                                                src="https://images.unsplash.com/photo-1593697821252-0c9137d9fc45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Human Rights Fundamentals"
                                             >
                                             <h4>
@@ -619,14 +638,16 @@
                                                 human rights principles and why
                                                 they matter in today's world.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Series</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
-                                                src="img/video2.jpg"
+                                                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Governance in Practice"
                                             >
                                             <h4>
@@ -641,14 +662,16 @@
                                                 across different regions and
                                                 contexts.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Series</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
-                                                src="img/video3.jpg"
+                                                src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Human Rights Law 101"
                                             >
                                             <h4>
@@ -663,15 +686,17 @@
                                                 applies in different legal
                                                 systems.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Series</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Practical Skills Group -->
+                                <!-- Row 2: Practical Skills -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
@@ -686,7 +711,7 @@
                                     <div class="resource-cards">
                                         <div class="resource-card">
                                             <img
-                                                src="img/video4.jpg"
+                                                src="https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Advocacy Techniques"
                                             >
                                             <h4>
@@ -701,14 +726,16 @@
                                                 good governance in your
                                                 community.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Video</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
-                                                src="img/video5.jpg"
+                                                src="https://images.unsplash.com/photo-1478358161113-b0e11994a36b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Digital Rights"
                                             >
                                             <h4>
@@ -723,14 +750,16 @@
                                                 space, including privacy and
                                                 freedom of expression.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Video</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
-                                                src="img/video6.jpg"
+                                                src="https://images.unsplash.com/photo-1519074069390-a87e7598cb04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Documenting Violations"
                                             >
                                             <h4>
@@ -744,15 +773,17 @@
                                                 document human rights violations
                                                 and governance failures.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Video</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Interviews & Talks Group -->
+                                <!-- Row 3: Expert Interviews & Talks -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
@@ -766,7 +797,7 @@
                                     <div class="resource-cards">
                                         <div class="resource-card">
                                             <img
-                                                src="img/video7.jpg"
+                                                src="https://images.unsplash.com/photo-1551818905-29c07d4802d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Expert Interviews"
                                             >
                                             <h4>
@@ -780,14 +811,16 @@
                                                 activists at the forefront of
                                                 human rights movements globally.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Interviews</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
-                                                src="img/video8.jpg"
+                                                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Conference Talks"
                                             >
                                             <h4>
@@ -801,14 +834,16 @@
                                                 human rights and governance
                                                 conferences around the world.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Talks</a>
+                                            </div>
                                         </div>
                                         <div class="resource-card">
                                             <img
-                                                src="img/video9.jpg"
+                                                src="https://images.unsplash.com/photo-1560439514-4e9645039924?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                                 alt="Academic Lectures"
                                             >
                                             <h4>
@@ -823,10 +858,12 @@
                                                 fields of human rights and
                                                 governance.
                                             </p>
-                                            <a href="#" class="btn"><span
+                                            <div class="btn-container">
+                                                <a href="#" class="btn"><span
                                                     class="material-icons"
                                                 >play_circle</span> Watch
                                                 Lectures</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -834,7 +871,7 @@
 
                             <!-- Laws & Rights Tab -->
                             <div class="tab-pane" id="laws">
-                                <!-- International Frameworks Group -->
+                                <!-- Row 1: International Frameworks -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
@@ -918,7 +955,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Regional Systems Group -->
+                                <!-- Row 2: Regional Systems -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
@@ -993,7 +1030,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Personal Rights Group -->
+                                <!-- Row 3: Personal Rights -->
                                 <div class="resource-group">
                                     <h3>
                                         <span class="material-icons-outlined"
