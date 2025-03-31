@@ -1,3 +1,5 @@
+// Common JavaScript functionality for the Human Rights & Governance Hub
+
 document.addEventListener('DOMContentLoaded', function() {
     // Get current page path
     const currentPage = window.location.pathname;
@@ -29,24 +31,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle Resources Page Tabs
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanes = document.querySelectorAll('.tab-pane');
+    // Handle mobile navigation toggling if needed
+    const setupMobileNav = () => {
+        // This could be expanded later if we need a hamburger menu
+        // or other mobile-specific navigation features
+    };
     
-    if (tabButtons.length > 0) {
+    // Tabs functionality for resources page
+    const setupTabs = () => {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        if (tabButtons.length === 0) return;
+        
         tabButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Remove active class from all buttons and panes
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabPanes.forEach(pane => pane.classList.remove('active'));
-                
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                // Activate corresponding tab pane
                 const tabId = this.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and panes
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding pane
+                this.classList.add('active');
                 document.getElementById(tabId).classList.add('active');
             });
         });
-    }
+    };
+    
+    // Initialize functionality
+    setupMobileNav();
+    setupTabs();
+    
+    // Responsive layout adjustments
+    window.addEventListener('resize', function() {
+        // Could add dynamic adjustments here if needed
+    });
 });
