@@ -320,11 +320,11 @@
                 </section>
                 
                 <script>
-                    // Global chat functionality
+                    // Global chat functionality with WebSockets
                     let userId = null;
                     let userLocation = 'Unknown';
-                    let chatPolling = {};
-                    const SYNC_INTERVAL = 3000; // 3 seconds
+                    let ws = null;
+                    let activeRoomId = null;
                     
                     // Generate a unique user ID on page load
                     function generateUserId() {
@@ -343,11 +343,59 @@
                         }
                     }
                     
-                    // Initialize user session
+                    // Initialize user session and WebSocket connection
                     async function initializeUser() {
                         userId = generateUserId();
                         userLocation = await getUserLocation();
                         console.log(`User initialized with ID: ${userId} from ${userLocation}`);
+                        
+                        // Initialize WebSocket connection
+                        initializeWebSocket();
+                    }
+                    
+                    // Initialize WebSocket connection
+                    function initializeWebSocket() {
+                        // Create a WebSocket connection
+                        const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+                        const wsUrl = `${protocol}${window.location.host}/ws/chat`;
+                        
+                        ws = new WebSocket(wsUrl);
+                        
+                        ws.onopen = function(event) {
+                            console.log("WebSocket connection established");
+                        };
+                        
+                        ws.onmessage = function(event) {
+                            const message = JSON.parse(event.data);
+                            
+                            if (message.type === "system") {
+                                console.log("System message:", message.text);
+                                return;
+                            }
+                            
+                            // Only process messages for the active room
+                            if (message.roomId === activeRoomId) {
+                                displayMessage(message.roomId, message);
+                                
+                                // Scroll to bottom
+                                const messagesContainer = document.getElementById(`chat-messages-${message.roomId}`);
+                                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            }
+                        };
+                        
+                        ws.onclose = function(event) {
+                            console.log("WebSocket connection closed");
+                            
+                            // Try to reconnect after a delay
+                            setTimeout(() => {
+                                console.log("Attempting to reconnect WebSocket...");
+                                initializeWebSocket();
+                            }, 3000);
+                        };
+                        
+                        ws.onerror = function(error) {
+                            console.error("WebSocket error:", error);
+                        };
                     }
                     
                     // Toggle chat visibility
@@ -357,77 +405,24 @@
                         
                         if (chatElement.style.display === "none") {
                             chatElement.style.display = "block";
-                            startChatPolling(roomId);
-                            document.getElementById(`chat-status-${roomId}`).style.display = "block";
-                            document.getElementById(`chat-status-${roomId}`).textContent = "Connected to global chat";
-                            setTimeout(() => {
-                                document.getElementById(`chat-status-${roomId}`).style.display = "none";
-                            }, 2000);
+                            activeRoomId = roomId;
+                            
+                            // Join the chat room
+                            if (ws && ws.readyState === WebSocket.OPEN) {
+                                ws.send(JSON.stringify({
+                                    type: "join",
+                                    roomId: roomId
+                                }));
+                                
+                                document.getElementById(`chat-status-${roomId}`).style.display = "block";
+                                document.getElementById(`chat-status-${roomId}`).textContent = "Connected to global chat";
+                                setTimeout(() => {
+                                    document.getElementById(`chat-status-${roomId}`).style.display = "none";
+                                }, 2000);
+                            }
                         } else {
                             chatElement.style.display = "none";
-                            stopChatPolling(roomId);
-                        }
-                    }
-                    
-                    // Start polling for new messages
-                    function startChatPolling(roomId) {
-                        if (chatPolling[roomId]) return;
-                        
-                        loadMessages(roomId);
-                        
-                        chatPolling[roomId] = setInterval(() => {
-                            loadMessages(roomId);
-                        }, SYNC_INTERVAL);
-                    }
-                    
-                    // Stop polling for messages
-                    function stopChatPolling(roomId) {
-                        if (chatPolling[roomId]) {
-                            clearInterval(chatPolling[roomId]);
-                            delete chatPolling[roomId];
-                        }
-                    }
-                    
-                    // Save messages to localStorage (our "database")
-                    function saveMessage(roomId, message) {
-                        let messages = JSON.parse(localStorage.getItem(`chatRoom_${roomId}`)) || [];
-                        messages.push(message);
-                        
-                        // Keep only the last 100 messages
-                        if (messages.length > 100) {
-                            messages = messages.slice(messages.length - 100);
-                        }
-                        
-                        localStorage.setItem(`chatRoom_${roomId}`, JSON.stringify(messages));
-                    }
-                    
-                    // Load messages from localStorage
-                    function loadMessages(roomId) {
-                        const messages = JSON.parse(localStorage.getItem(`chatRoom_${roomId}`)) || [];
-                        const messagesContainer = document.getElementById(`chat-messages-${roomId}`);
-                        
-                        // Check if we need to update the UI
-                        const currentMsgCount = messagesContainer.childElementCount;
-                        if (messages.length > currentMsgCount) {
-                            // Clear and rebuild messages
-                            messagesContainer.innerHTML = '';
-                            
-                            // Add status indicators for syncing
-                            const statusElement = document.getElementById(`chat-status-${roomId}`);
-                            statusElement.style.display = "block";
-                            statusElement.textContent = "Syncing new messages...";
-                            
-                            messages.forEach(message => {
-                                displayMessage(roomId, message);
-                            });
-                            
-                            // Scroll to bottom
-                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                            
-                            // Hide status after a delay
-                            setTimeout(() => {
-                                statusElement.style.display = "none";
-                            }, 1000);
+                            activeRoomId = null;
                         }
                     }
                     
@@ -461,22 +456,15 @@
                         const inputElement = document.getElementById(`chat-input-${roomId}`);
                         const message = inputElement.value.trim();
                         
-                        if (message) {
-                            // Create message object
-                            const messageObj = {
+                        if (message && ws && ws.readyState === WebSocket.OPEN) {
+                            // Create and send message
+                            ws.send(JSON.stringify({
+                                type: "message",
+                                roomId: roomId,
                                 text: message,
-                                timestamp: new Date().getTime(),
                                 userId: userId,
                                 location: userLocation
-                            };
-                            
-                            // Save and display the message
-                            saveMessage(roomId, messageObj);
-                            displayMessage(roomId, messageObj);
-                            
-                            // Scroll to bottom of chat
-                            const messagesContainer = document.getElementById(`chat-messages-${roomId}`);
-                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            }));
                             
                             // Clear input
                             inputElement.value = '';
