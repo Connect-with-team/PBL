@@ -56,6 +56,125 @@
             .forum-post a:hover {
                 color: #1e3a6d;
             }
+
+            /* Chat Container Styles */
+            .chat-container {
+                margin-top: 20px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                background-color: #f9f9f9;
+            }
+            
+            .chat-messages {
+                height: 300px;
+                overflow-y: auto;
+                padding: 15px;
+                background-color: white;
+            }
+            
+            .message {
+                margin-bottom: 10px;
+                padding: 10px;
+                border-radius: 8px;
+                max-width: 80%;
+            }
+            
+            .message-anonymous {
+                background-color: #e7f3ff;
+                align-self: flex-start;
+            }
+            
+            .message-timestamp {
+                font-size: 0.7em;
+                color: #888;
+                display: block;
+                margin-top: 5px;
+            }
+            
+            .chat-input {
+                display: flex;
+                padding: 10px;
+                background-color: #f0f0f0;
+            }
+            
+            .chat-input input {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                margin-right: 10px;
+            }
+            
+            .chat-input button {
+                background-color: #2a4b8d;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 10px 15px;
+                cursor: pointer;
+            }
+            
+            .chat-input button:hover {
+                background-color: #1e3a6d;
+            }
+            
+            .chat-toggle {
+                display: block;
+                text-align: center;
+                margin-top: 10px;
+                padding: 8px;
+                background-color: #2a4b8d;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            /* Global Chat Styles */
+            .chat-header {
+                background-color: #f0f0f0;
+                padding: 10px 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .chat-header h4 {
+                margin: 0;
+                color: #2a4b8d;
+            }
+            
+            .online-indicator {
+                display: inline-block;
+                margin-left: 10px;
+                font-size: 0.8em;
+                color: #4CAF50;
+            }
+            
+            .chat-status {
+                font-size: 0.8em;
+                color: #888;
+                text-align: center;
+                padding: 5px;
+                display: none;
+            }
+            
+            .message-self {
+                background-color: #d1e7dd;
+                margin-left: auto;
+                margin-right: 0;
+            }
+            
+            .location-tag {
+                display: inline-block;
+                font-size: 0.7em;
+                background-color: #e9ecef;
+                padding: 2px 5px;
+                border-radius: 10px;
+                margin-right: 5px;
+            }
         </style>
         <script src="/code/script.js"></script>
     </head>
@@ -127,27 +246,257 @@
                             effectively increase civic participation and
                             political awareness in your community.
                         </p>
-                        <a href="#">
+                        <a href="#" class="chat-toggle" onclick="toggleChat('chat1')">
                             <span class="material-icons-outlined">comment</span>
                             Join the Discussion
                         </a>
+                        
+                        <!-- Chat Interface -->
+                        <div id="chat1" class="chat-container" style="display: none;">
+                            <div class="chat-header">
+                                <h4>Civic Engagement Discussion</h4>
+                                <div class="online-indicator">
+                                    <span class="material-icons-outlined">public</span>
+                                    Global Chat
+                                </div>
+                            </div>
+                            <div class="chat-status" id="chat-status-1">Syncing messages...</div>
+                            <div class="chat-messages" id="chat-messages-1"></div>
+                            <div class="chat-input">
+                                <input type="text" id="chat-input-1" placeholder="Type your message here..." />
+                                <button onclick="sendMessage('1')">
+                                    <span class="material-icons-outlined">send</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="forum-post">
                         <h3>
-                            <span class="material-icons-outlined"
-                            >campaign</span> Current Awareness Campaigns
+                            <span class="material-icons-outlined">campaign</span> 
+                            Current Awareness Campaigns
                         </h3>
                         <p>
                             Find out about ongoing human rights and good
                             governance awareness campaigns. Learn how you can
                             contribute and get involved.
                         </p>
-                        <a href="#">
-                            <span class="material-icons-outlined"
-                            >visibility</span> View Campaigns
+                        <a href="#" class="chat-toggle" onclick="toggleChat('chat2')">
+                            <span class="material-icons-outlined">comment</span>
+                            Join the Discussion
                         </a>
+                        
+                        <!-- Chat Interface -->
+                        <div id="chat2" class="chat-container" style="display: none;">
+                            <div class="chat-header">
+                                <h4>Awareness Campaigns Discussion</h4>
+                                <div class="online-indicator">
+                                    <span class="material-icons-outlined">public</span>
+                                    Global Chat
+                                </div>
+                            </div>
+                            <div class="chat-status" id="chat-status-2">Syncing messages...</div>
+                            <div class="chat-messages" id="chat-messages-2"></div>
+                            <div class="chat-input">
+                                <input type="text" id="chat-input-2" placeholder="Type your message here..." />
+                                <button onclick="sendMessage('2')">
+                                    <span class="material-icons-outlined">send</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </section>
+                
+                <script>
+                    // Global chat functionality
+                    let userId = null;
+                    let userLocation = 'Unknown';
+                    let chatPolling = {};
+                    const SYNC_INTERVAL = 3000; // 3 seconds
+                    
+                    // Generate a unique user ID on page load
+                    function generateUserId() {
+                        return 'user_' + Math.random().toString(36).substr(2, 9);
+                    }
+                    
+                    // Get user's approximate location
+                    async function getUserLocation() {
+                        try {
+                            const response = await fetch('https://ipapi.co/json/');
+                            const data = await response.json();
+                            return data.city ? `${data.city}, ${data.country_name}` : data.country_name || 'Unknown';
+                        } catch (error) {
+                            console.error('Error getting location:', error);
+                            return 'Unknown';
+                        }
+                    }
+                    
+                    // Initialize user session
+                    async function initializeUser() {
+                        userId = generateUserId();
+                        userLocation = await getUserLocation();
+                        console.log(`User initialized with ID: ${userId} from ${userLocation}`);
+                    }
+                    
+                    // Toggle chat visibility
+                    function toggleChat(chatId) {
+                        const chatElement = document.getElementById(chatId);
+                        const roomId = chatId.replace('chat', '');
+                        
+                        if (chatElement.style.display === "none") {
+                            chatElement.style.display = "block";
+                            startChatPolling(roomId);
+                            document.getElementById(`chat-status-${roomId}`).style.display = "block";
+                            document.getElementById(`chat-status-${roomId}`).textContent = "Connected to global chat";
+                            setTimeout(() => {
+                                document.getElementById(`chat-status-${roomId}`).style.display = "none";
+                            }, 2000);
+                        } else {
+                            chatElement.style.display = "none";
+                            stopChatPolling(roomId);
+                        }
+                    }
+                    
+                    // Start polling for new messages
+                    function startChatPolling(roomId) {
+                        if (chatPolling[roomId]) return;
+                        
+                        loadMessages(roomId);
+                        
+                        chatPolling[roomId] = setInterval(() => {
+                            loadMessages(roomId);
+                        }, SYNC_INTERVAL);
+                    }
+                    
+                    // Stop polling for messages
+                    function stopChatPolling(roomId) {
+                        if (chatPolling[roomId]) {
+                            clearInterval(chatPolling[roomId]);
+                            delete chatPolling[roomId];
+                        }
+                    }
+                    
+                    // Save messages to localStorage (our "database")
+                    function saveMessage(roomId, message) {
+                        let messages = JSON.parse(localStorage.getItem(`chatRoom_${roomId}`)) || [];
+                        messages.push(message);
+                        
+                        // Keep only the last 100 messages
+                        if (messages.length > 100) {
+                            messages = messages.slice(messages.length - 100);
+                        }
+                        
+                        localStorage.setItem(`chatRoom_${roomId}`, JSON.stringify(messages));
+                    }
+                    
+                    // Load messages from localStorage
+                    function loadMessages(roomId) {
+                        const messages = JSON.parse(localStorage.getItem(`chatRoom_${roomId}`)) || [];
+                        const messagesContainer = document.getElementById(`chat-messages-${roomId}`);
+                        
+                        // Check if we need to update the UI
+                        const currentMsgCount = messagesContainer.childElementCount;
+                        if (messages.length > currentMsgCount) {
+                            // Clear and rebuild messages
+                            messagesContainer.innerHTML = '';
+                            
+                            // Add status indicators for syncing
+                            const statusElement = document.getElementById(`chat-status-${roomId}`);
+                            statusElement.style.display = "block";
+                            statusElement.textContent = "Syncing new messages...";
+                            
+                            messages.forEach(message => {
+                                displayMessage(roomId, message);
+                            });
+                            
+                            // Scroll to bottom
+                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            
+                            // Hide status after a delay
+                            setTimeout(() => {
+                                statusElement.style.display = "none";
+                            }, 1000);
+                        }
+                    }
+                    
+                    // Display a message in the chat
+                    function displayMessage(roomId, message) {
+                        const messagesContainer = document.getElementById(`chat-messages-${roomId}`);
+                        const messageElement = document.createElement('div');
+                        messageElement.className = 'message message-anonymous';
+                        
+                        // If this message is from the current user
+                        if (message.userId === userId) {
+                            messageElement.classList.add('message-self');
+                        }
+                        
+                        const dateObj = new Date(message.timestamp);
+                        const timeStr = dateObj.toLocaleTimeString();
+                        
+                        messageElement.innerHTML = `
+                            ${message.text}
+                            <span class="message-timestamp">
+                                <span class="location-tag">${message.location}</span>
+                                Anonymous • ${timeStr}
+                            </span>
+                        `;
+                        
+                        messagesContainer.appendChild(messageElement);
+                    }
+                    
+                    // Send a message
+                    function sendMessage(roomId) {
+                        const inputElement = document.getElementById(`chat-input-${roomId}`);
+                        const message = inputElement.value.trim();
+                        
+                        if (message) {
+                            // Create message object
+                            const messageObj = {
+                                text: message,
+                                timestamp: new Date().getTime(),
+                                userId: userId,
+                                location: userLocation
+                            };
+                            
+                            // Save and display the message
+                            saveMessage(roomId, messageObj);
+                            displayMessage(roomId, messageObj);
+                            
+                            // Scroll to bottom of chat
+                            const messagesContainer = document.getElementById(`chat-messages-${roomId}`);
+                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            
+                            // Clear input
+                            inputElement.value = '';
+                            
+                            // Show status indicating message was sent
+                            const statusElement = document.getElementById(`chat-status-${roomId}`);
+                            statusElement.style.display = "block";
+                            statusElement.textContent = "Message sent globally";
+                            
+                            setTimeout(() => {
+                                statusElement.style.display = "none";
+                            }, 1500);
+                        }
+                    }
+                    
+                    // Initialize on page load
+                    document.addEventListener('DOMContentLoaded', async function() {
+                        // Initialize user
+                        await initializeUser();
+                        
+                        // Set up event listeners for input fields
+                        const inputFields = document.querySelectorAll('.chat-input input');
+                        inputFields.forEach(input => {
+                            input.addEventListener('keypress', function(e) {
+                                if (e.key === 'Enter') {
+                                    const chatId = this.id.split('-')[2];
+                                    sendMessage(chatId);
+                                }
+                            });
+                        });
+                    });
+                </script>
             </main>
         </div>
 
